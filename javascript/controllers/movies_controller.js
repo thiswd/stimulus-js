@@ -3,6 +3,10 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static targets = ["input", "results"]
 
+  static values = {
+    baseUrl: String
+  }
+
   connect() {
     console.log("Hello from our first Stimulus controller");
   }
@@ -16,7 +20,7 @@ export default class extends Controller {
   }
 
   fetchMovies(query) {
-    const url = `https://www.omdbapi.com/?apikey=6ddb271d&s=${query}`
+    const url = `${this.baseUrlValue}?apikey=6ddb271d&s=${query}`
 
     fetch(url).then(response => response.json()).then(data => {
       this.insertMovies(data)
