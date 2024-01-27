@@ -10,6 +10,8 @@ export default class extends Controller {
   search(event) {
     event.preventDefault()
 
+    this.resultsTarget.innerHTML = ""
+
     this.fetchMovies(this.inputTarget.value)
   }
 
