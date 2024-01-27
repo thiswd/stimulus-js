@@ -10,16 +10,23 @@ export default class extends Controller {
   search(event) {
     event.preventDefault()
 
-    const url = `https://www.omdbapi.com/?apikey=6ddb271d&s=${this.inputTarget.value}`
+    this.fetchMovies(this.inputTarget.value)
+  }
+
+  fetchMovies(query) {
+    const url = `https://www.omdbapi.com/?apikey=6ddb271d&s=${query}`
 
     fetch(url).then(response => response.json()).then(data => {
-      console.log(data)
-      data.Search.forEach((movie) => {
-        const movieTag = `<li class="list-group-item border-0">
-          <img src="${movie.Poster}" alt="${movie.Title} movie poster" width="100" height="100%">
-        </li>`
-        this.resultsTarget.insertAdjacentHTML("beforeend", movieTag)
-      })
+      this.insertMovies(data)
+    })
+  }
+
+  insertMovies(movies) {
+    movies.Search.forEach((movie) => {
+      const movieTag = `<li class="list-group-item border-0">
+        <img src="${movie.Poster}" alt="${movie.Title} movie poster" width="100" height="100%">
+      </li>`
+      this.resultsTarget.insertAdjacentHTML("beforeend", movieTag)
     })
   }
 }
