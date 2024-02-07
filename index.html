@@ -117,7 +117,11 @@
     <div class="d-flex flex-column justify-content-center align-items-center">
       <h1 class="mb-5">API Key</h1>
 
-      <div class="input-group w-50" data-controller="copy-to-clipboard">
+      <div
+        class="input-group w-50"
+        data-controller="copy-to-clipboard"
+        data-copy-to-clipboard-feedback-text-value="Copied!"
+      >
         <input
           class="form-control"
           type="text"
@@ -126,7 +130,11 @@
           readonly
         >
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" data-action="click->copy-to-clipboard#copy">Copy to Clipboard</button>
+          <button
+            class="btn btn-outline-primary"
+            data-action="click->copy-to-clipboard#copy"
+            data-copy-to-clipboard-target="button"
+          >Copy to Clipboard</button>
         </div>
       </div>
     </div>
